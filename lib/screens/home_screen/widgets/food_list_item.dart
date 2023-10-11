@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starters_bloc/constants/colors.dart';
 import 'package:starters_bloc/models/food.dart';
 
 class FoodListItem extends StatelessWidget {
@@ -13,7 +14,7 @@ class FoodListItem extends StatelessWidget {
       child: Container(
         height: 110,
         decoration: BoxDecoration(
-          color: Colors.black12,
+          color: kBackgroundColor,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
