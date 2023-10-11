@@ -1,18 +1,10 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starters_bloc/models/food.dart';
 import 'package:starters_bloc/resources/api_repository.dart';
 
 part 'food_event.dart';
 part 'food_state.dart';
-
-// class FoodBloc extends Bloc<FoodEvent, FoodState> {
-//   FoodBloc() : super(FoodInitial()) {
-//     on<FoodEvent>((event, emit) {
-
-//     });
-//   }
-// }
 
 class FoodBloc extends Bloc<FoodEvent, FoodState> {
   FoodBloc() : super(FoodInitial()) {

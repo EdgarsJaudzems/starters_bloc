@@ -20,7 +20,7 @@ class FoodListItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
+              child: Image.network(
                 foodItem.imageURL!,
                 fit: BoxFit.cover,
               ),
@@ -38,9 +38,6 @@ class FoodListItem extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         height: 1.5,
                       ),
-                    ),
-                    Text(
-                      foodItem.description!,
                     ),
                     const SizedBox(height: 5),
                     Row(
