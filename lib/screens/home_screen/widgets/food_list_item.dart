@@ -21,6 +21,7 @@ class FoodListItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
+                width: 150,
                 foodItem.imageURL!,
                 fit: BoxFit.cover,
               ),
