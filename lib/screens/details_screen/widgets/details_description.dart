@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:starters_bloc/bloc/food_bloc/food_bloc.dart';
 import 'package:starters_bloc/constants/colors.dart';
 import 'package:starters_bloc/models/food.dart';
 
@@ -11,7 +13,6 @@ class DetailsDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height - 400,
       padding: const EdgeInsets.all(25),
       color: kBackgroundColor,
       child: Column(
@@ -36,6 +37,14 @@ class DetailsDescription extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 30),
+          ElevatedButton(
+              onPressed: () {
+                context.read<FoodBloc>().orderList.add(foodItem);
+                print("Added");
+                print(context.read<FoodBloc>().orderList.length);
+                Navigator.pop(context);
+              },
+              child: const Text("Add to Order")),
           const SizedBox(height: 30),
           const Row(
             children: [
@@ -58,29 +67,6 @@ class DetailsDescription extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          const Row(
-            children: [
-              Text(
-                'Price',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              )
-            ],
-          ),
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "${foodItem.price}",
-              style: const TextStyle(
-                wordSpacing: 1.2,
-                height: 1.5,
-                fontSize: 16,
-              ),
-            ),
-          )
         ],
       ),
     );

@@ -13,21 +13,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final FoodBloc foodBloc = FoodBloc();
-
-  @override
-  void initState() {
-    foodBloc.add(GetFoodItemsList());
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(8),
-        child: BlocProvider(
-          create: (context) => foodBloc,
           child: BlocListener<FoodBloc, FoodState>(
             listener: (context, state) {
               if (state is FoodFailure) {
@@ -55,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-      ),
     );
   }
 

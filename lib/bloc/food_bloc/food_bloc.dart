@@ -7,6 +7,8 @@ part 'food_event.dart';
 part 'food_state.dart';
 
 class FoodBloc extends Bloc<FoodEvent, FoodState> {
+  List<Food> orderList = [];
+
   FoodBloc() : super(FoodInitial()) {
     final ApiRepository apiRepository = ApiRepository();
 
