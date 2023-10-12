@@ -11,7 +11,7 @@ class DetailsDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height - 350,
+      height: MediaQuery.of(context).size.height - 400,
       padding: const EdgeInsets.all(25),
       color: kBackgroundColor,
       child: Column(

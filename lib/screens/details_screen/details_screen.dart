@@ -12,11 +12,16 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      body: Column(
-        children: [
-          DetailsImage(foodItem: foodItem),
-          DetailsDescription(foodItem: foodItem)
-        ],
+      appBar: AppBar(
+        title: const Text('Detail View'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            DetailsImage(foodItem: foodItem),
+            DetailsDescription(foodItem: foodItem)
+          ],
+        ),
       ),
     );
   }

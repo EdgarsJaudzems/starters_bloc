@@ -14,7 +14,7 @@ class DetailsImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 30),
         SizedBox(
           height: 300,
           child: Stack(

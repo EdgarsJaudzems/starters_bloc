@@ -24,9 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Starters"),
-      ),
       body: Container(
         padding: const EdgeInsets.all(8),
         child: BlocProvider(
