@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starters_bloc/constants/colors.dart';
+import 'package:starters_bloc/constants/sizes.dart';
 import 'package:starters_bloc/models/food.dart';
 
 class FoodListItem extends StatelessWidget {
@@ -10,17 +11,17 @@ class FoodListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(kPaddingMarginSmall),
       child: Container(
         height: 110,
         decoration: BoxDecoration(
           color: kBackgroundColor,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(kBorderRadiusLarger),
         ),
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(kBorderRadiusLarger),
               child: Image.network(
                 width: 150,
                 foodItem.imageURL!,
@@ -29,7 +30,7 @@ class FoodListItem extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(kPaddingMarginLarger),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -41,7 +42,7 @@ class FoodListItem extends StatelessWidget {
                         height: 1.5,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: kSizedBoxSmaller),
                     Row(
                       children: [
                         const Text(

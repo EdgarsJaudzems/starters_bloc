@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starters_bloc/bloc/food_bloc/food_bloc.dart';
+import 'package:starters_bloc/constants/sizes.dart';
 import 'package:starters_bloc/constants/strings.dart';
 import 'package:starters_bloc/models/food.dart';
 import 'package:starters_bloc/screens/home_screen/widgets/food_list_item.dart';
@@ -23,7 +24,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(kPaddingMarginSmall),
                     itemCount: ordersList.length,
                     itemBuilder: (context, index) {
                       final item = ordersList[index];
@@ -34,8 +35,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             ordersList.removeAt(index);
                           });
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content:
-                                  Text('${item.name} $kSnackBarRemoveFromOrder')));
+                              content: Text(
+                                  '${item.name} $kSnackBarRemoveFromOrder')));
                         },
                         background: Container(
                           color: Colors.red,
@@ -61,7 +62,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           const SnackBar(content: Text(kSnackBarOrder)));
                     },
                     child: const Text(kSendOrder)),
-                const SizedBox(height: 50),
+                const SizedBox(height: kSizedBoxExtraLarge),
               ],
             ),
       // ),

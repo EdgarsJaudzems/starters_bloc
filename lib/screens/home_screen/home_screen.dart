@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starters_bloc/bloc/food_bloc/food_bloc.dart';
+import 'package:starters_bloc/constants/sizes.dart';
 import 'package:starters_bloc/models/food.dart';
 import 'package:starters_bloc/screens/details_screen/details_screen.dart';
 import 'package:starters_bloc/screens/home_screen/widgets/food_list_item.dart';
@@ -17,34 +18,34 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(8),
-          child: BlocListener<FoodBloc, FoodState>(
-            listener: (context, state) {
-              if (state is FoodFailure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.message!),
-                  ),
-                );
+        padding: const EdgeInsets.all(kPaddingMarginSmall),
+        child: BlocListener<FoodBloc, FoodState>(
+          listener: (context, state) {
+            if (state is FoodFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message!),
+                ),
+              );
+            }
+          },
+          child: BlocBuilder<FoodBloc, FoodState>(
+            builder: (context, state) {
+              if (state is FoodInitial) {
+                return _buildLoadingIndicator();
+              } else if (state is FoodLoading) {
+                return _buildLoadingIndicator();
+              } else if (state is FoodSuccess) {
+                return _buildFoodListItemCard(context, state.foodResponse);
+              } else if (state is FoodFailure) {
+                return Container();
+              } else {
+                return Container();
               }
             },
-            child: BlocBuilder<FoodBloc, FoodState>(
-              builder: (context, state) {
-                if (state is FoodInitial) {
-                  return _buildLoadingIndicator();
-                } else if (state is FoodLoading) {
-                  return _buildLoadingIndicator();
-                } else if (state is FoodSuccess) {
-                  return _buildFoodListItemCard(context, state.foodResponse);
-                } else if (state is FoodFailure) {
-                  return Container();
-                } else {
-                  return Container();
-                }
-              },
-            ),
           ),
         ),
+      ),
     );
   }
 

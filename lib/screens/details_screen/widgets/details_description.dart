@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starters_bloc/bloc/food_bloc/food_bloc.dart';
 import 'package:starters_bloc/constants/colors.dart';
+import 'package:starters_bloc/constants/sizes.dart';
 import 'package:starters_bloc/constants/strings.dart';
 import 'package:starters_bloc/models/food.dart';
 
@@ -14,7 +15,7 @@ class DetailsDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(25),
+      padding: const EdgeInsets.all(kPaddingMarginSmall),
       color: kBackgroundColor,
       child: Column(
         children: [
@@ -25,7 +26,7 @@ class DetailsDescription extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: kSizedBoxLarger),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -37,7 +38,7 @@ class DetailsDescription extends StatelessWidget {
                   composition: kProtein, amount: foodItem.protein as num),
             ],
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: kSizedBoxLarge),
           ElevatedButton(
               onPressed: () async {
                 context.read<FoodBloc>().orderList.add(foodItem);
@@ -45,7 +46,7 @@ class DetailsDescription extends StatelessWidget {
                 if (context.mounted) Navigator.pop(context);
               },
               child: const Text(kAddToOrder)),
-          const SizedBox(height: 30),
+          const SizedBox(height: kSizedBoxLarge),
           const Row(
             children: [
               Text(
@@ -57,7 +58,7 @@ class DetailsDescription extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: kSizedBoxSmall),
           Text(
             foodItem.description!,
             style: const TextStyle(
@@ -66,7 +67,7 @@ class DetailsDescription extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: kSizedBoxLarge),
         ],
       ),
     );

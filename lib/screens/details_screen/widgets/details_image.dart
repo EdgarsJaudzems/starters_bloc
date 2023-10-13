@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starters_bloc/constants/colors.dart';
+import 'package:starters_bloc/constants/sizes.dart';
 import 'package:starters_bloc/models/food.dart';
 
 class DetailsImage extends StatelessWidget {
@@ -14,7 +15,7 @@ class DetailsImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 30),
+        const SizedBox(height: kSizedBoxLarge),
         SizedBox(
           height: 300,
           child: Stack(
@@ -42,7 +43,7 @@ class DetailsImage extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Container(
-                  margin: const EdgeInsets.all(15),
+                  margin: const EdgeInsets.all(kPaddingMarginLarge),
                   width: 250,
                   height: 250,
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
@@ -53,7 +54,7 @@ class DetailsImage extends StatelessWidget {
                     )
                   ]),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(120),
+                    borderRadius: BorderRadius.circular(kBorderRadiusGigantic),
                     child: Image.network(
                       width: 150,
                       foodItem.imageURL!,
