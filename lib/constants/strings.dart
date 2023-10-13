@@ -18,6 +18,7 @@ const String kCarbs = "kCarbs";
 const String kProtein = "kProtein";
 
 const String kNoOrders = "No orders added";
+const String kItemAddedToOrder = "Item Added to Order";
 const String kDeleteItem = "Delete Item";
 
 // SnackBars

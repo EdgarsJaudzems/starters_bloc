@@ -58,7 +58,6 @@ class DetailsImage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(kBorderRadiusGigantic),
                     child: CachedNetworkImage(
                       imageUrl: foodItem.imageURL!,
-                      width: 150,
                       fit: BoxFit.cover,
                       placeholder: (context, url) =>
                           const Center(child: CircularProgressIndicator()),

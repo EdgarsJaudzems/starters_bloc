@@ -5,6 +5,7 @@ import 'package:starters_bloc/constants/colors.dart';
 import 'package:starters_bloc/constants/sizes.dart';
 import 'package:starters_bloc/constants/strings.dart';
 import 'package:starters_bloc/models/food.dart';
+import 'package:starters_bloc/widgets/snackbar.dart';
 
 class DetailsDescription extends StatelessWidget {
   const DetailsDescription({super.key, required this.foodItem});
@@ -42,8 +43,11 @@ class DetailsDescription extends StatelessWidget {
           ElevatedButton(
               onPressed: () async {
                 context.read<FoodBloc>().orderList.add(foodItem);
+                showSnackBar(context, text: kItemAddedToOrder);
                 await Future.delayed(const Duration(milliseconds: 200));
-                if (context.mounted) Navigator.pop(context);
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               },
               child: const Text(kAddToOrder)),
           const SizedBox(height: kSizedBoxLarge),
