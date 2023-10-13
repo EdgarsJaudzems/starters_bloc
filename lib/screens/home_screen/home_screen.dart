@@ -5,6 +5,7 @@ import 'package:starters_bloc/constants/sizes.dart';
 import 'package:starters_bloc/models/food.dart';
 import 'package:starters_bloc/screens/details_screen/details_screen.dart';
 import 'package:starters_bloc/screens/home_screen/widgets/food_list_item.dart';
+import 'package:starters_bloc/widgets/snackBar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,11 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: BlocListener<FoodBloc, FoodState>(
           listener: (context, state) {
             if (state is FoodFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message!),
-                ),
-              );
+              showSnackBar(context, text: state.message!);
             }
           },
           child: BlocBuilder<FoodBloc, FoodState>(

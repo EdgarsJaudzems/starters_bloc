@@ -5,6 +5,7 @@ import 'package:starters_bloc/constants/sizes.dart';
 import 'package:starters_bloc/constants/strings.dart';
 import 'package:starters_bloc/models/food.dart';
 import 'package:starters_bloc/screens/home_screen/widgets/food_list_item.dart';
+import 'package:starters_bloc/widgets/snackBar.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({super.key});
@@ -34,9 +35,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           setState(() {
                             ordersList.removeAt(index);
                           });
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(
-                                  '${item.name} $kSnackBarRemoveFromOrder')));
+                          showSnackBar(context,
+                              text: '${item.name} $kSnackBarRemoveFromOrder');
                         },
                         background: Container(
                           color: Colors.red,
@@ -58,8 +58,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text(kSnackBarOrder)));
+                      showSnackBar(context, text: kSnackBarOrder);
                     },
                     child: const Text(kSendOrder)),
                 const SizedBox(height: kSizedBoxExtraLarge),
