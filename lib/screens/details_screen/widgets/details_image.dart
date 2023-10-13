@@ -65,10 +65,6 @@ class DetailsImage extends StatelessWidget {
             ],
           ),
         ),
-        // Container(
-        //   height: 50,
-        //   color: kBackgroundColor,
-        // ),
       ],
     );
   }

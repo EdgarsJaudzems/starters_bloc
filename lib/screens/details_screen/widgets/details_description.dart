@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starters_bloc/bloc/food_bloc/food_bloc.dart';
 import 'package:starters_bloc/constants/colors.dart';
+import 'package:starters_bloc/constants/strings.dart';
 import 'package:starters_bloc/models/food.dart';
 
 class DetailsDescription extends StatelessWidget {
@@ -29,27 +30,26 @@ class DetailsDescription extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ProductComposition(
-                  composition: "kCal", amount: foodItem.calories as num),
+                  composition: kCalories, amount: foodItem.calories as num),
               ProductComposition(
-                  composition: "Carbs", amount: foodItem.carbs as num),
+                  composition: kCarbs, amount: foodItem.carbs as num),
               ProductComposition(
-                  composition: "Protein", amount: foodItem.protein as num),
+                  composition: kProtein, amount: foodItem.protein as num),
             ],
           ),
           const SizedBox(height: 30),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 context.read<FoodBloc>().orderList.add(foodItem);
-                print("Added");
-                print(context.read<FoodBloc>().orderList.length);
-                Navigator.pop(context);
+                await Future.delayed(const Duration(milliseconds: 200));
+                if (context.mounted) Navigator.pop(context);
               },
-              child: const Text("Add to Order")),
+              child: const Text(kAddToOrder)),
           const SizedBox(height: 30),
           const Row(
             children: [
               Text(
-                'Description',
+                kDescription,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:starters_bloc/constants/strings.dart';
 import 'package:starters_bloc/models/food.dart';
 import 'package:starters_bloc/resources/api_repository.dart';
 
@@ -21,7 +22,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
           emit(FoodFailure(mList.error));
         }
       } on NetworkError {
-        emit(const FoodFailure("Failed to fetch data. is your device online?"));
+        emit(const FoodFailure(kNetworkError));
       }
     });
   }
