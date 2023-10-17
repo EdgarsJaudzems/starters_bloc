@@ -71,6 +71,24 @@ class Food {
     data['calories'] = calories;
     return data;
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'imageURL': imageURL,
+      'protein': protein,
+      'carbs': carbs,
+      'price': price,
+      'description': description,
+      'calories': calories,
+    };
+  }
+
+  @override
+  String toString() {
+    return 'Food{id: $id, name: $name}';
+  }
 }
 
 class MockData {
