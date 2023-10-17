@@ -73,7 +73,7 @@ class DetailsDescription extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          const SizedBox(height: kSizedBoxExtraLarge),
+          const SizedBox(height: kSizedBoxExtraXLarge),
         ],
       ),
     );

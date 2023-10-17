@@ -14,12 +14,15 @@ const String kDetailViewTitle = "Detail View";
 const String kDescription = "Description";
 
 const String kCalories = "kCal";
-const String kCarbs = "kCarbs";
-const String kProtein = "kProtein";
+const String kCarbs = "Carbs";
+const String kProtein = "Protein";
 
 const String kNoOrders = "No orders added";
 const String kItemAddedToOrder = "Item Added to Order";
 const String kDeleteItem = "Delete Item";
+const String kDeleteItemAggreement = "Are you sure you want to delete";
+const String kYes = "Yes";
+const String kNo = "No";
 
 // SnackBars
 const String kSnackBarOrder = "Order placed";

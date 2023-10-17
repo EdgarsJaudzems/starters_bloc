@@ -38,9 +38,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: const Text("Remove Item"),
+                                  title: const Text(kDeleteItem),
                                   content: Text(
-                                      "Are you sure you want to remove ${item[index].name}?"),
+                                      "$kDeleteItemAggreement ${item[index].name}?"),
                                   actions: <Widget>[
                                     ElevatedButton(
                                         onPressed: () {
@@ -50,14 +50,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           Navigator.of(context).pop(true);
                                           showSnackBar(context,
                                               text:
-                                                  '${item[index].name} $kSnackBarRemoveFromOrder');
+                                                  "${item[index].name} $kSnackBarRemoveFromOrder");
                                           setState(() {});
                                         },
-                                        child: const Text("Yes")),
+                                        child: const Text(kYes)),
                                     ElevatedButton(
                                       onPressed: () =>
                                           Navigator.of(context).pop(false),
-                                      child: const Text("No"),
+                                      child: const Text(kNo),
                                     ),
                                   ],
                                 );
