@@ -17,55 +17,87 @@ class OrdersScreen extends StatefulWidget {
 class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
+    final orders = context.read<FoodBloc>().orderList;
     return Scaffold(
       body: Column(
         children: [
           Expanded(
-              child: FutureBuilder(
-                  future: SqlManager().getAllFoodListFromDB(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return ListView.builder(
-                        padding: const EdgeInsets.all(kPaddingMarginSmall),
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          final item = snapshot.data!;
-                          return Dismissible(
-                            key: Key(item[index].id.toString()),
-                            onDismissed: (direction) {
-                              SqlManager().deleteFoodFromDB(item[index].id!);
-                              showSnackBar(context,
-                                  text:
-                                      '${item[index].name} $kSnackBarRemoveFromOrder');
-                            },
-                            background: Container(
-                              color: Colors.red,
-                              child: const Center(
-                                child: Text(
-                                  kDeleteItem,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
+            child: FutureBuilder(
+                future: SqlManager().getAllFoodListFromDB(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                    return ListView.builder(
+                      padding: const EdgeInsets.all(kPaddingMarginSmall),
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final item = snapshot.data!;
+                        return Dismissible(
+                          key: Key(item[index].id.toString()),
+                          confirmDismiss: (DismissDirection direction) async {
+                            return await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text("Remove Item"),
+                                  content: Text(
+                                      "Are you sure you want to remove ${item[index].name}?"),
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          SqlManager().deleteFoodFromDB(
+                                              item[index].id!);
+                                          orders.remove(orders[index]);
+                                          Navigator.of(context).pop(true);
+                                          showSnackBar(context,
+                                              text:
+                                                  '${item[index].name} $kSnackBarRemoveFromOrder');
+                                          setState(() {});
+                                        },
+                                        child: const Text("Yes")),
+                                    ElevatedButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(false),
+                                      child: const Text("No"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          background: Container(
+                            color: Colors.red,
+                            child: const Center(
+                              child: Text(
+                                kDeleteItem,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
                               ),
                             ),
-                            child: FoodListItem(foodItem: item[index]),
-                          );
+                          ),
+                          child: FoodListItem(foodItem: item[index]),
+                        );
+                      },
+                    );
+                  } else {
+                    return const Center(child: Text(kNoOrders));
+                  }
+                }),
+          ),
+          (orders.isEmpty)
+              ? const SizedBox()
+              : Column(
+                  children: [
+                    ElevatedButton(
+                        onPressed: () async {
+                          showSnackBar(context, text: kSnackBarOrder);
                         },
-                      );
-                    } else {
-                      return const Center(child: Text(kNoOrders));
-                    }
-                  })),
-          ElevatedButton(
-              onPressed: () async {
-                showSnackBar(context, text: kSnackBarOrder);
-                print(SqlManager()..getAllFoodListFromDB());
-              },
-              child: const Text(kSendOrder)),
-          const SizedBox(height: kSizedBoxExtraLarge),
+                        child: const Text(kSendOrder)),
+                    const SizedBox(height: kSizedBoxExtraLarge)
+                  ],
+                )
         ],
       ),
     );
