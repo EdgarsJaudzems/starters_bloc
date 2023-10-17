@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starters_bloc/bloc/food_bloc/food_bloc.dart';
 import 'package:starters_bloc/constants/strings.dart';
+import 'package:starters_bloc/resources/sql_manager.dart';
 import 'package:starters_bloc/screens/home_screen/home_screen.dart';
 import 'package:starters_bloc/screens/orders_screen/orders_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SqlManager().database;
   runApp(const MyApp());
 }
 
@@ -14,8 +17,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final foodBloc = FoodBloc()..add(GetFoodItemsList());
     return BlocProvider(
-      create: (context) => FoodBloc(),
+      create: (context) => foodBloc,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: DefaultTabController(
@@ -24,8 +28,8 @@ class MyApp extends StatelessWidget {
               appBar: AppBar(
                 title: const Text(kAppTitle),
                 bottom: const TabBar(tabs: [
-                  Tab(icon: Icon(Icons.set_meal)),
-                  Tab(icon: Icon(Icons.store))
+                  Tab(key: Key("tab_first"), icon: Icon(Icons.set_meal)),
+                  Tab(key: Key("tab_second"), icon: Icon(Icons.store))
                 ]),
               ),
               body: const TabBarView(
