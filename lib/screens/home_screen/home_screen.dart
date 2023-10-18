@@ -4,7 +4,6 @@ import 'package:starters_bloc/bloc/food_bloc/food_bloc.dart';
 import 'package:starters_bloc/models/food.dart';
 import 'package:starters_bloc/screens/details_screen/details_screen.dart';
 import 'package:starters_bloc/screens/home_screen/widgets/food_list_item.dart';
-import 'package:starters_bloc/widgets/snackBar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -27,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (state is FoodSuccess) {
           return _buildFoodListItemCard(context, state.foodResponse);
         } else if (state is FoodFailure) {
-          showSnackBar(context, text: state.message!);
           return Container();
         } else {
           return Container();

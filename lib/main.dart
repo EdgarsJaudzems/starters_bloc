@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
               appBar: AppBar(
                 title: const Text(kAppTitle),
                 bottom: const TabBar(tabs: [
-                  Tab(key: Key("tab_first"), icon: Icon(Icons.set_meal)),
-                  Tab(key: Key("tab_second"), icon: Icon(Icons.store))
+                  Tab(icon: Icon(Icons.set_meal)),
+                  Tab(icon: Icon(Icons.store))
                 ]),
               ),
               body: const TabBarView(
